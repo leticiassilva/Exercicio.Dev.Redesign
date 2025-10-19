@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="FillForms" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.Collections;assembly=System.Private.CoreLib" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="filtrados" Type="OutArgument(scg:IEnumerable(ui:QueueItem))" />
     <x:Property Name="in_QueueItems" Type="InArgument(scg:IEnumerable(ui:QueueItem))" />
     <x:Property Name="out_QueueItems" Type="OutArgument(scg:IEnumerable(ui:QueueItem))" />
   </x:Members>
@@ -42,6 +43,22 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Activities.System.Collections.Filters</x:String>
+      <x:String>UiPath.Activities.System.Collections</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.UIAutomationNext.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers</x:String>
+      <x:String>UiPath.Platform.Triggers.Scope</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Triggers</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -90,15 +107,36 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="FillForms" sap:VirtualizedContainerService.HintSize="873,761" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="FillForms" sap:VirtualizedContainerService.HintSize="1373,6097" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="554,738" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="626,6074" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="ExtractTableOpportunities" />
       </Sequence.Variables>
@@ -107,14 +145,15 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge Sales Opportunities" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="520,655" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V2">
+      <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Edge Sales Opportunities" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="592,5991" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V2">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="486,414" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="558,5750" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <Sequence.Variables>
+                <Variable x:TypeArguments="ui:QueueItem" Name="currentQueueItem" />
                 <Variable x:TypeArguments="ui:QueueItem" Name="currentItem" />
                 <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="QueueFiltered" />
               </Sequence.Variables>
@@ -123,31 +162,521 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ForEach x:TypeArguments="scg:IEnumerable(ui:QueueItem)" CurrentIndex="{x:Null}" DisplayName="For Each currentItem" sap:VirtualizedContainerService.HintSize="452,352" sap2010:WorkflowViewState.IdRef="ForEach`1_1">
+              <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="Equals" FolderPath="leticia.ssilva.rj@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="524,176" sap2010:WorkflowViewState.IdRef="GetQueueItems_2" QueueItemStates="All" QueueName="OpportunitiesData">
+                <ui:GetQueueItems.Result>
+                  <OutArgument x:TypeArguments="scg:IEnumerable(ui:QueueItem)">
+                    <CSharpReference x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">out_QueueItems</CSharpReference>
+                  </OutArgument>
+                </ui:GetQueueItems.Result>
+              </ui:GetQueueItems>
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="524,149" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="scg:IEnumerable(ui:QueueItem)">
+                          <CSharpReference x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">filtrados</CSharpReference>
+                        </OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="scg:IEnumerable(ui:QueueItem)">
+                          <CSharpValue x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_32">out_QueueItems.Where(i =&gt; i.SpecificContent.ContainsKey("Country") &amp;&amp; new[] { "USA", "Germany" }.Contains((i.SpecificContent["Country"] != null ? i.SpecificContent["Country"].ToString() : null) ?? "", StringComparer.OrdinalIgnoreCase))</CSharpValue>
+                        </InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+              <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" DisplayName="For Each currentQueueItem" sap:VirtualizedContainerService.HintSize="524,5365" sap2010:WorkflowViewState.IdRef="ForEach`1_2">
                 <ui:ForEach.Body>
-                  <ActivityAction x:TypeArguments="scg:IEnumerable(ui:QueueItem)">
+                  <ActivityAction x:TypeArguments="ui:QueueItem">
                     <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="currentItem" />
+                      <DelegateInArgument x:TypeArguments="ui:QueueItem" Name="currentQueueItem" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="450,228" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="522,5243" sap2010:WorkflowViewState.IdRef="Sequence_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
-                        <ui:LogMessage.Message>
-                          <InArgument x:TypeArguments="x:Object">
-                            <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">$"Item filtrado: {currentItem}"</CSharpValue>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'ID'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="c30f9ce3-a3a2-4530-a240-ba50e6c2455c" ContentHash="iQsAo4BIkE-G2qePU5RCng" CvElementArea="130, 482, 449, 40" CvType="InputBox" DesignTimeRectangle="134, 485, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="33c65554-f38c-4791-bceb-bde3394690d0" InformativeScreenshot="c34c8469f68e3167b35d18a2a8827a1b.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/Yz1l_UkpgUyvCj6x6jDpAg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="c30f9ce3-a3a2-4530-a240-ba50e6c2455c" CvTextArea="133, 411, 23, 20" CvTextArgument="ID" CvType="Text" DesignTimeRectangle="134, 404, 22, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='ID' parentid='i8' tag='DIV' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='ID' /&gt;" Guid="594286a9-606a-4aeb-98fa-69f5651129c5" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">currentQueueItem.Id.ToString()</CSharpValue>
                           </InArgument>
-                        </ui:LogMessage.Message>
-                      </ui:LogMessage>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Account Name'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="c30f9ce3-a3a2-4530-a240-ba50e6c2455c" ContentHash="lYuzdgOvNkCncWOu_m2Biw" CvElementArea="130, 707, 448, 39" CvType="InputBox" DesignTimeRectangle="134, 709, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i13 i16' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="0bb096f2-b514-44dd-8864-6d18c339ba83" InformativeScreenshot="7c92671a3bcb17155b7247d9bdb22030.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/sXeStKz5tk-M23S87N1U_g" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="c30f9ce3-a3a2-4530-a240-ba50e6c2455c" CvTextArea="131, 635, 162, 21" CvTextArgument="Account Name" CvType="Text" DesignTimeRectangle="134, 628, 158, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Account Name' parentid='i13' tag='DIV' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Account Name' /&gt;" Guid="2720637a-c5d7-4015-a5f1-ae6e0730a211" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_34">currentQueueItem.SpecificContent["Account Name"].ToString()</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Country'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="4ed396c0-3019-48c9-afa0-68e6c0f94fd3" ContentHash="4eLvyQ1XO0ervDu5iCJLjw" CvElementArea="131, 432, 447, 38" CvType="InputBox" DesignTimeRectangle="134, 433, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i18 i21' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="b3342672-8ce9-4e1c-84a0-73088e063514" InformativeScreenshot="aeec20efb359599ecdf0aae998be2443.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/lG69iuvIRkOqcZhtdseMQA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="4ed396c0-3019-48c9-afa0-68e6c0f94fd3" CvTextArea="132, 359, 86, 25" CvTextArgument="Country" CvType="Text" DesignTimeRectangle="134, 352, 83, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='i18' tag='SPAN' type='' class='M7eMe' aaname='Country' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Country' /&gt;" Guid="9462e6ce-567f-49b2-b795-c806b43f3821" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">currentQueueItem.SpecificContent["Country"].ToString()</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Quantity'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="bb9fff6d-2ef9-4e9e-b8e1-cf702dc7618c" ContentHash="TZN5_HEvbEaK4T00gpcX8A" CvElementArea="130, 256, 448, 39" CvType="InputBox" DesignTimeRectangle="134, 257, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i23 i26' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="8e0c9f6f-1f4d-452e-95b0-51f604df8c2f" InformativeScreenshot="6493179140f4a93c1e3f19ea0855298a.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/p1qXx6BSokORVhw4BYgFng" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="bb9fff6d-2ef9-4e9e-b8e1-cf702dc7618c" CvTextArea="132, 183, 91, 25" CvTextArgument="Quantity" CvType="Text" DesignTimeRectangle="134, 176, 88, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='i23' tag='SPAN' type='' class='M7eMe' aaname='Quantity' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Quantity' /&gt;" Guid="cb9527c4-1b98-4aff-ae8a-eb92659dc255" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">currentQueueItem.SpecificContent["Quantity"].ToString()</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Stage'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_5" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="316edff9-cc03-4d95-a221-2862c52eec10" ContentHash="Ah2V-XG2X0Od4Kb-_Bu5hw" CvElementArea="131, 279, 448, 39" CvType="InputBox" DesignTimeRectangle="134, 281, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i28 i31' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="5a5d54c1-403c-41a2-a124-31c2ad03fa9d" InformativeScreenshot="3c7902a84d30c7d9e5a49c5b7c907b5e.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/RZGodH3-Ok6katgXA0Gkvg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="316edff9-cc03-4d95-a221-2862c52eec10" CvTextArea="132, 207, 64, 25" CvTextArgument="Stage" CvType="Text" DesignTimeRectangle="134, 200, 61, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='i28' tag='SPAN' type='' class='M7eMe' aaname='Stage' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Stage' /&gt;" Guid="dfa2321c-821b-4c27-9d0b-f65313965d1a" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">currentQueueItem.SpecificContent["Stage"].ToString()</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Opportunity Owner'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_6" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="6cf1d469-444e-43f5-be86-0bcdff50e1de" ContentHash="jh8D0-eSQ0iwlF2OjuHkJw" CvElementArea="131, 403, 447, 40" CvType="InputBox" DesignTimeRectangle="134, 405, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i33 i36' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="64897b53-ab03-480f-af20-0f7906b2de96" InformativeScreenshot="025a78f19497ea7aa38f17e49fcf1a5c.png" IsResponsive="True" Reference="XmPgXVDAm0SnJPeNeNV4pw/wkL8Qrih60GUL4SuYzWS5A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="6cf1d469-444e-43f5-be86-0bcdff50e1de" CvTextArea="132, 331, 203, 25" CvTextArgument="Opportunity Owner" CvType="Text" DesignTimeRectangle="134, 324, 199, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Opportunity Owner' parentid='i33' tag='DIV' type='' class='' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Opportunity Owner' /&gt;" Guid="3d62123f-a4a7-4be5-a890-a877c397cdab" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_40">currentQueueItem.SpecificContent["Opportunity Owner"].ToString()</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Unit Sales Price'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_7" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="b0047a21-b086-48fe-a367-eb0d58c25c08" ContentHash="cUzZjY2mk0icaD8iVIzDfA" CvElementArea="131, 363, 447, 40" CvType="InputBox" DesignTimeRectangle="134, 365, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i38 i41' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="2d1976fd-7e99-4338-80d9-ab4c6b8d0c6c" InformativeScreenshot="0ad16f0d36b6e04403b3365388f930ca.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/K9J2PGNxx0uUQX5MwYcGsg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="b0047a21-b086-48fe-a367-eb0d58c25c08" CvTextArea="133, 254, 168, 21" CvTextArgument="Unit Sales Price" CvType="Text" DesignTimeRectangle="134, 248, 188, 36" FuzzySelectorArgument="&lt;webctrl parentid='i38' tag='DIV' type='' class='' aaname='Unit Sales Price' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Unit Sales Price' /&gt;" Guid="51921c4e-4883-41d4-acdc-33d221bf527e" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_41">currentQueueItem.SpecificContent["Unit Sales Price"].ToString().Replace(",", "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[1]</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Total Price'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="b0047a21-b086-48fe-a367-eb0d58c25c08" ContentHash="-PeC61VpQkaf_MICLyan_Q" CvElementArea="131, 623, 448, 40" CvType="InputBox" DesignTimeRectangle="134, 625, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i43 i46' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="755aa3f1-f20a-48d8-9b38-3cf874058177" InformativeScreenshot="8ecbd5ee17f4a712ef3745f9fb8bc5db.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/WoaudML8BUyorJs1kK1UhQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="b0047a21-b086-48fe-a367-eb0d58c25c08" CvTextArea="132, 514, 116, 22" CvTextArgument="Total Price" CvType="Text" DesignTimeRectangle="134, 508, 188, 36" FuzzySelectorArgument="&lt;webctrl parentid='i43' tag='DIV' type='' class='' aaname='Total Price' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Total Price' /&gt;" Guid="246cb1da-6b6f-456d-b066-d05da8eecaa9" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_42">currentQueueItem.SpecificContent["Total Price"].ToString().Replace(",", "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[1]</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'List Price'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_9" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="dd9bdb72-feb6-44eb-8c4f-f89126d27537" ContentHash="2CgAIU5ljkyUhEl5Oke6xg" CvElementArea="131, 282, 447, 40" CvType="InputBox" DesignTimeRectangle="134, 285, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i48 i51' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="bbdabcab-bd1d-4e85-969a-e62e91529988" InformativeScreenshot="a07c22b5db86b639f9487b0698fbf395.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/UkoQGFwD4EmeyKlrqI6DXA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="dd9bdb72-feb6-44eb-8c4f-f89126d27537" CvTextArea="133, 174, 101, 21" CvTextArgument="List Price" CvType="Text" DesignTimeRectangle="134, 168, 188, 36" FuzzySelectorArgument="&lt;webctrl parentid='i48' tag='DIV' type='' class='' aaname='List Price' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='List Price' /&gt;" Guid="a77b1a40-ebdd-4ab6-9f64-99f109dff760" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_43">currentQueueItem.SpecificContent["List Price"].ToString().Replace(",", "").Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[1]</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <If sap:VirtualizedContainerService.HintSize="488,695" sap2010:WorkflowViewState.IdRef="If_1">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_48">int.Parse(string.Concat(currentQueueItem.SpecificContent["Unit Sales Price"].ToString().Replace(",", string.Empty).Where(c =&gt; char.IsDigit(c)))) &gt; 10000</CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,278" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sim'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="0ccc3d2c-0123-4770-b155-712b31d484a7" ContentHash="Y-_2ADM8EUSURG7uW4ORaw" CvElementArea="71, 426, 37, 37" CvType="RadioButton" DesignTimeRectangle="74, 430, 30, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;label&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='i51' tag='DIV' /&gt;" Guid="58955534-5b0b-4fc3-b75b-8969948036a0" InformativeScreenshot="ff37b55cf9592413b3e1699195c71a54.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/oP9-tn-QokuuoW-BbSuJZQ" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="0ccc3d2c-0123-4770-b155-712b31d484a7" CvTextArea="121, 434, 39, 19" CvTextArgument="Sim" CvType="Text" DesignTimeRectangle="122, 430, 37, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Sim' tag='SPAN' type='' class='aDTYNe snByac OvPDhc OIC90c' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Sim' /&gt;" Guid="e1343a4f-e7ba-43c2-a7c1-333109c5193b" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NClick.Target>
+                              <uix:NClick.VerifyOptions>
+                                <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionOptions.Retry>
+                                  <uix:VerifyExecutionOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionOptions.Timeout>
+                                </uix:VerifyExecutionOptions>
+                              </uix:NClick.VerifyOptions>
+                            </uix:NClick>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,278" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Não'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="45d4703c-5aba-4000-a24e-670310b2970c" ContentHash="_XMhO5_qMkanZovyfeQV5w" CvElementArea="70, 486, 37, 37" CvType="RadioButton" DesignTimeRectangle="74, 490, 30, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;label&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='i54' tag='DIV' /&gt;" Guid="c63065c7-21f6-4f70-8111-c4afa7c243a3" InformativeScreenshot="108381e574e4f80f040dd5aa5f97696e.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/LjXdE_c6WE2JeX2KNEO76A" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                      <uix:Target CVScreenId="45d4703c-5aba-4000-a24e-670310b2970c" CvTextArea="121, 493, 42, 21" CvTextArgument="Não" CvType="Text" DesignTimeRectangle="122, 490, 40, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Não' tag='SPAN' type='' class='aDTYNe snByac OvPDhc OIC90c' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Não' /&gt;" Guid="405dba98-ed04-4d05-bc28-13184e6ae25a" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NClick.Target>
+                              <uix:NClick.VerifyOptions>
+                                <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionOptions.Retry>
+                                  <uix:VerifyExecutionOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionOptions.Timeout>
+                                </uix:VerifyExecutionOptions>
+                              </uix:NClick.VerifyOptions>
+                            </uix:NClick>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into 'Qual a moeda da oportun…'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,288" sap2010:WorkflowViewState.IdRef="NTypeInto_10" InteractionMode="SameAsCard" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NTypeInto.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="5742d889-b7f6-48de-ad6f-4ece72c6510b" ContentHash="auBZcKyQFEKy4QQDSher9A" CvElementArea="131, 314, 447, 40" CvType="InputBox" DesignTimeRectangle="134, 317, 443, 36" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl aria-labelledby='i64 i67' tag='INPUT' type='text' class='whsOnd zHQkBf' aaname='' matching:aria-labelledby='fuzzy' fuzzylevel:aria-labelledby='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="2a250640-148b-4820-bf45-dc33f52f44a2" InformativeScreenshot="c6bc084f35ba6f0e12da67abb3f383dd.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/piKaqRw2Z0ae0O46ZTL1RA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="FuzzySelector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="5742d889-b7f6-48de-ad6f-4ece72c6510b" CvTextArea="133, 206, 341, 27" CvTextArgument="Qual a moeda da oportunidade?" CvType="Text" DesignTimeRectangle="134, 200, 340, 36" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='i64' tag='DIV' type='' class='' aaname='Qual a moeda da oportunidade?' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Qual a moeda da oportunidade?' /&gt;" Guid="796616d3-b445-4463-8f6e-de32bfd9ef9d" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NTypeInto.Target>
+                        <uix:NTypeInto.Text>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_39">currentQueueItem.SpecificContent["List Price"].ToString().Substring(0,3)</CSharpValue>
+                          </InArgument>
+                        </uix:NTypeInto.Text>
+                        <uix:NTypeInto.VerifyOptions>
+                          <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionTypeIntoOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionTypeIntoOptions.Retry>
+                            <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                          </uix:VerifyExecutionTypeIntoOptions>
+                        </uix:NTypeInto.VerifyOptions>
+                      </uix:NTypeInto>
+                      <If sap:VirtualizedContainerService.HintSize="488,1163" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Condition>
+                          <InArgument x:TypeArguments="x:Boolean">
+                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_54">currentQueueItem.SpecificContent != null &amp;&amp; currentQueueItem.SpecificContent.ContainsKey("Stage") &amp;&amp; currentQueueItem.SpecificContent["Stage"] != null &amp;&amp; currentQueueItem.SpecificContent["Stage"].ToString().IndexOf("Closed Won", StringComparison.OrdinalIgnoreCase) != -1</CSharpValue>
+                          </InArgument>
+                        </If.Condition>
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,278" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Ganha'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,218" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                              <uix:NClick.Target>
+                                <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" ContentHash="3inZoQJn70O1tGGeK0FiaQ" CvElementArea="130, 307, 37, 37" CvType="RadioButton" DesignTimeRectangle="134, 311, 30, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;label&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='i74' tag='DIV' /&gt;" Guid="dfa08751-9e60-40bd-aea0-93f92b0eb1d9" InformativeScreenshot="e7d63bf776c78f7479e07bfb90c32f47.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/qJFqwFBzdUa1wFcuIvYCsA" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                  <uix:TargetAnchorable.Anchors>
+                                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <uix:Target CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" CvTextArea="180, 314, 65, 20" CvTextArgument="Ganha" CvType="Text" DesignTimeRectangle="182, 311, 63, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Ganha' tag='SPAN' type='' class='aDTYNe snByac OvPDhc OIC90c' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Ganha' /&gt;" Guid="7250e136-be82-4666-bcdf-819d9c11a786" SearchSteps="FuzzySelector, CV" />
+                                    </scg:List>
+                                  </uix:TargetAnchorable.Anchors>
+                                </uix:TargetAnchorable>
+                              </uix:NClick.Target>
+                              <uix:NClick.VerifyOptions>
+                                <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                  <uix:VerifyExecutionOptions.Retry>
+                                    <InArgument x:TypeArguments="x:Boolean" />
+                                  </uix:VerifyExecutionOptions.Retry>
+                                  <uix:VerifyExecutionOptions.Timeout>
+                                    <InArgument x:TypeArguments="x:Double" />
+                                  </uix:VerifyExecutionOptions.Timeout>
+                                </uix:VerifyExecutionOptions>
+                              </uix:NClick.VerifyOptions>
+                            </uix:NClick>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,746" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If sap:VirtualizedContainerService.HintSize="452,686" sap2010:WorkflowViewState.IdRef="If_4">
+                              <If.Condition>
+                                <InArgument x:TypeArguments="x:Boolean">
+                                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_53">currentQueueItem.SpecificContent != null &amp;&amp; currentQueueItem.SpecificContent.ContainsKey("Stage") &amp;&amp; currentQueueItem.SpecificContent["Stage"] != null &amp;&amp; currentQueueItem.SpecificContent["Stage"].ToString().IndexOf("Closed Lost", StringComparison.OrdinalIgnoreCase) != -1</CSharpValue>
+                                </InArgument>
+                              </If.Condition>
+                              <If.Then>
+                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,278" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Perdida'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" ContentHash="CRCETcpnlECLO4RrkH7-iw" CvElementArea="130, 367, 37, 37" CvType="RadioButton" DesignTimeRectangle="134, 371, 30, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;label&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='i77' tag='DIV' /&gt;" Guid="57b337dd-03fa-43b5-a773-745e571f3d78" InformativeScreenshot="232e802c98fa16dc2174204cb9fcdbf8.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/fhIDlVSi4kClRRLM4dgwjg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                            <uix:Target CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" CvTextArea="181, 374, 75, 20" CvTextArgument="Perdida" CvType="Text" DesignTimeRectangle="182, 371, 74, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Perdida' tag='SPAN' type='' class='aDTYNe snByac OvPDhc OIC90c' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Perdida' /&gt;" Guid="f326d834-b491-4816-82a0-b9acdb801706" SearchSteps="FuzzySelector, CV" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                    <uix:NClick.VerifyOptions>
+                                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                        <uix:VerifyExecutionOptions.Retry>
+                                          <InArgument x:TypeArguments="x:Boolean" />
+                                        </uix:VerifyExecutionOptions.Retry>
+                                        <uix:VerifyExecutionOptions.Timeout>
+                                          <InArgument x:TypeArguments="x:Double" />
+                                        </uix:VerifyExecutionOptions.Timeout>
+                                      </uix:VerifyExecutionOptions>
+                                    </uix:NClick.VerifyOptions>
+                                  </uix:NClick>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,278" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Em aberto'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" ContentHash="Iavvn0fo4Ui4_OXQ1pTkBw" CvElementArea="130, 427, 37, 37" CvType="RadioButton" DesignTimeRectangle="134, 431, 30, 30" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div&amp;gt;div&amp;gt;label&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='i80' tag='DIV' /&gt;" Guid="a7973743-cb06-4ea8-b051-9413dc452c65" InformativeScreenshot="1a912e744fceb11f2bea2ec91f744595.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/Jp2P_tZ4Skas1M6LvGZEMw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                            <uix:Target CVScreenId="d2643ef0-be77-4241-94e6-3e94f36fccac" CvTextArea="181, 434, 102, 21" CvTextArgument="Em aberto" CvType="Text" DesignTimeRectangle="182, 431, 100, 30" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Em aberto' tag='SPAN' type='' class='aDTYNe snByac OvPDhc OIC90c' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' check:innerText='Em aberto' /&gt;" Guid="664a8fbe-b3fc-4420-ac2b-1b28cfec5b9a" SearchSteps="FuzzySelector, CV" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                    <uix:NClick.VerifyOptions>
+                                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                        <uix:VerifyExecutionOptions.Retry>
+                                          <InArgument x:TypeArguments="x:Boolean" />
+                                        </uix:VerifyExecutionOptions.Retry>
+                                        <uix:VerifyExecutionOptions.Timeout>
+                                          <InArgument x:TypeArguments="x:Double" />
+                                        </uix:VerifyExecutionOptions.Timeout>
+                                      </uix:VerifyExecutionOptions>
+                                    </uix:NClick.VerifyOptions>
+                                  </uix:NClick>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Enviar'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,227" sap2010:WorkflowViewState.IdRef="NClick_10" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform" CVScreenId="1586fa09-8053-436b-8a84-239d9b229cf7" ContentHash="VsC6OLhXKkKJDQBGcMTTpg" CvElementArea="95, 529, 138, 58" CvTextArea="131, 547, 65, 20" CvTextArgument="Enviar" CvType="Button" DesignTimeRectangle="97, 531, 134, 54" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span' tag='SPAN' /&gt;" Guid="b13eae84-7799-4e3c-99f3-8cb8826a45e6" InformativeScreenshot="5a9b0c70e338d6555888abcaa92d325b.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/j1ENkci6-UWEw2SD_Ciutg" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                        </uix:NClick.Target>
+                        <uix:NClick.VerifyOptions>
+                          <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionOptions.Retry>
+                            <uix:VerifyExecutionOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionOptions.Timeout>
+                          </uix:VerifyExecutionOptions>
+                        </uix:NClick.VerifyOptions>
+                      </uix:NClick>
+                      <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Enviar outra resposta'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="488,218" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a485524d-cfb7-4dcf-983b-fb87cade150f" Version="V5">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable BrowserURL="docs.google.com/forms/u/0/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/formResponse" CVScreenId="49a7e612-3618-4bc4-9437-f438b8be188b" ContentHash="FflHGEw0SkyD9euSHvcsCw" CvTextArea="140, 357, 199, 22" CvTextArgument="Enviar outra resposta" CvType="Text" DesignTimeRectangle="141, 354, 198, 25" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='A' /&gt;" Guid="9ba6b2eb-2793-488e-8ade-8cc5ba3346db" InformativeScreenshot="aa121b215c323de139047c7353560fb5.png" Reference="XmPgXVDAm0SnJPeNeNV4pw/k2I33fOQv0yrmu3cXm07rw" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
+                        </uix:NClick.Target>
+                        <uix:NClick.VerifyOptions>
+                          <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                            <uix:VerifyExecutionOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionOptions.Retry>
+                            <uix:VerifyExecutionOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionOptions.Timeout>
+                          </uix:VerifyExecutionOptions>
+                        </uix:NClick.VerifyOptions>
+                      </uix:NClick>
                     </Sequence>
                   </ActivityAction>
                 </ui:ForEach.Body>
                 <ui:ForEach.Values>
                   <InArgument x:TypeArguments="sc:IEnumerable">
-                    <CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">in_QueueItems</CSharpValue>
+                    <CSharpValue x:TypeArguments="sc:IEnumerable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">filtrados</CSharpValue>
                   </InArgument>
                 </ui:ForEach.Values>
               </ui:ForEach>
@@ -155,7 +684,7 @@
           </ActivityAction>
         </uix:NApplicationCard.Body>
         <uix:NApplicationCard.TargetApp>
-          <uix:TargetApp Area="-1160, 125, 1168, 832" BrowserType="Edge" ContentHash="vLoShsL7xkqV4O6YnNv4VQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABESURBVDhPY0i32n4g3Wr7fzLxfgYsgiThQWYADCCzsQHaGUAOpq4LkBXgAzgNIAdT1wXICvABnAaQgweHAfvRBUnAuwEl0a7q96YPWgAAAABJRU5ErkJggg==" InformativeScreenshot="01fb40389f178d11db49353ed8d392cf.jpg" Selector="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" Url="https://docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform?pli=1&amp;pli=1" Version="V2" />
+          <uix:TargetApp Area="-1160, 125, 1168, 832" BrowserType="Edge" ContentHash="e_hVd93toEyFQ2yH92xrSA" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxIAAAsSAdLdfvwAAABESURBVDhPY0i32n4g3Wr7fzLxfgYsgiThQWYADCCzsQHaGUAOpq4LkBXgAzgNIAdT1wXICvABnAaQgweHAfvRBUnAuwEl0a7q96YPWgAAAABJRU5ErkJggg==" InformativeScreenshot="01fb40389f178d11db49353ed8d392cf.jpg" Reference="XmPgXVDAm0SnJPeNeNV4pw/u1w75R75WUiPaasGrYhQVg" Selector="&lt;html app='msedge.exe' title='Exercício DEV - UIPATH' /&gt;" Url="https://docs.google.com/forms/d/e/1FAIpQLSfSh19lUWjOw3pKMFboGkOEovQrp9s2TXoksx9XPA4li0TrZQ/viewform?pli=1&amp;pli=1" Version="V2" />
         </uix:NApplicationCard.TargetApp>
       </uix:NApplicationCard>
     </Sequence>
