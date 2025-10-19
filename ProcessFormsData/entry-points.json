@@ -4,7 +4,292 @@
     {
       "filePath": "Main.xaml",
       "uniqueId": "68f4dbef-6410-455e-b18c-6267c89e9180",
-      "type": "process"
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_QueueItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "minimum": -9223372036854775808,
+                  "maximum": 9223372036854775807
+                },
+                "Progress": {
+                  "type": "string"
+                },
+                "SpecificContent": {
+                  "$ref": "#/$defs/dictionaryOfStringAndObject"
+                },
+                "Reference": {
+                  "type": "string"
+                },
+                "QueueName": {
+                  "type": "string"
+                },
+                "RetryNo": {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                "Status": {
+                  "enum": [
+                    "New",
+                    "InProgress",
+                    "Failed",
+                    "Successful",
+                    "Abandoned",
+                    "Retried",
+                    "Deleted"
+                  ]
+                },
+                "LastProcessingOn": {
+                  "type": "string"
+                },
+                "ItemKey": {
+                  "$ref": "#/$defs/guid"
+                },
+                "QueueDefinitionId": {
+                  "$ref": "#/$defs/integer"
+                },
+                "AssignedTo": {
+                  "type": "string"
+                },
+                "Priority": {
+                  "enum": [
+                    "High",
+                    "Normal",
+                    "Low"
+                  ]
+                },
+                "RowVersion": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 255
+                  }
+                },
+                "ProcessingException": {
+                  "type": "object",
+                  "properties": {
+                    "Reason": {
+                      "type": "string"
+                    },
+                    "Details": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "enum": [
+                        "ApplicationException",
+                        "BusinessException"
+                      ]
+                    },
+                    "AssociatedImageFilePath": {
+                      "type": "string"
+                    },
+                    "Id": {
+                      "$ref": "#/$defs/integer"
+                    },
+                    "CreationTime": {
+                      "$ref": "#/$defs/nullableOfDateTime"
+                    }
+                  }
+                },
+                "StartTransactionTime": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "ReviewStatus": {
+                  "type": "string"
+                },
+                "Output": {
+                  "$ref": "#/$defs/dictionaryOfStringAndObject"
+                },
+                "DueDate": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "DeferDate": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "ParentOperationId": {
+                  "type": "string"
+                },
+                "UniqueKey": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "$defs": {
+              "integer": {
+                "type": "integer",
+                "minimum": -9223372036854775808,
+                "maximum": 9223372036854775807
+              },
+              "dictionaryOfStringAndObject": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              },
+              "guid": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullableOfDateTime": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_QueueItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "minimum": -9223372036854775808,
+                  "maximum": 9223372036854775807
+                },
+                "Progress": {
+                  "type": "string"
+                },
+                "SpecificContent": {
+                  "$ref": "#/$defs/dictionaryOfStringAndObject"
+                },
+                "Reference": {
+                  "type": "string"
+                },
+                "QueueName": {
+                  "type": "string"
+                },
+                "RetryNo": {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                "Status": {
+                  "enum": [
+                    "New",
+                    "InProgress",
+                    "Failed",
+                    "Successful",
+                    "Abandoned",
+                    "Retried",
+                    "Deleted"
+                  ]
+                },
+                "LastProcessingOn": {
+                  "type": "string"
+                },
+                "ItemKey": {
+                  "$ref": "#/$defs/guid"
+                },
+                "QueueDefinitionId": {
+                  "$ref": "#/$defs/integer"
+                },
+                "AssignedTo": {
+                  "type": "string"
+                },
+                "Priority": {
+                  "enum": [
+                    "High",
+                    "Normal",
+                    "Low"
+                  ]
+                },
+                "RowVersion": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 255
+                  }
+                },
+                "ProcessingException": {
+                  "type": "object",
+                  "properties": {
+                    "Reason": {
+                      "type": "string"
+                    },
+                    "Details": {
+                      "type": "string"
+                    },
+                    "Type": {
+                      "enum": [
+                        "ApplicationException",
+                        "BusinessException"
+                      ]
+                    },
+                    "AssociatedImageFilePath": {
+                      "type": "string"
+                    },
+                    "Id": {
+                      "$ref": "#/$defs/integer"
+                    },
+                    "CreationTime": {
+                      "$ref": "#/$defs/nullableOfDateTime"
+                    }
+                  }
+                },
+                "StartTransactionTime": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "ReviewStatus": {
+                  "type": "string"
+                },
+                "Output": {
+                  "$ref": "#/$defs/dictionaryOfStringAndObject"
+                },
+                "DueDate": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "DeferDate": {
+                  "$ref": "#/$defs/nullableOfDateTime"
+                },
+                "ParentOperationId": {
+                  "type": "string"
+                },
+                "UniqueKey": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "$defs": {
+              "integer": {
+                "type": "integer",
+                "minimum": -9223372036854775808,
+                "maximum": 9223372036854775807
+              },
+              "dictionaryOfStringAndObject": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              },
+              "guid": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "nullableOfDateTime": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

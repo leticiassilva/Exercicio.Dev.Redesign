@@ -1,4 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GetFromOrchestrator" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetFromOrchestrator" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_QueueItems" Type="InArgument(scg:IEnumerable(ui:QueueItem))" />
+    <x:Property Name="out_QueueItems" Type="OutArgument(scg:IEnumerable(ui:QueueItem))" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -24,6 +30,9 @@
       <x:String>System.Windows.Markup</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -48,13 +57,105 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetFromOrchestrator" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetFromOrchestrator" sap:VirtualizedContainerService.HintSize="873,1279" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:QueueItem" Name="QueueItem" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="522,1256" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="Equals" FolderPath="leticia.ssilva.rj@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="All" QueueName="OpportunitiesData">
+        <ui:GetQueueItems.Result>
+          <OutArgument x:TypeArguments="scg:IEnumerable(ui:QueueItem)">
+            <CSharpReference x:TypeArguments="scg:IEnumerable(ui:QueueItem)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">out_QueueItems</CSharpReference>
+          </OutArgument>
+        </ui:GetQueueItems.Result>
+      </ui:GetQueueItems>
+      <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While" sap:VirtualizedContainerService.HintSize="488,831" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+        <ui:InterruptibleWhile.Body>
+          <Sequence DisplayName="Corpo" sap:VirtualizedContainerService.HintSize="486,700" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" FolderPath="leticia.ssilva.rj@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="OpportunitiesData">
+              <ui:GetQueueItem.TransactionItem>
+                <OutArgument x:TypeArguments="ui:QueueItem">
+                  <CSharpReference x:TypeArguments="ui:QueueItem" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">QueueItem</CSharpReference>
+                </OutArgument>
+              </ui:GetQueueItem.TransactionItem>
+            </ui:GetQueueItem>
+            <If sap:VirtualizedContainerService.HintSize="452,464" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">QueueItem != null &amp;&amp; string.Equals(QueueItem.Status.ToString(), QueueItemStatus.InProgress.ToString(), StringComparison.CurrentCultureIgnoreCase)</CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SetTransactionStatus AnalyticsVariable="{x:Null}" ContinueOnError="{x:Null}" FolderPath="{x:Null}" OutputVariable="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful">
+                    <ui:SetTransactionStatus.Analytics>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                    </ui:SetTransactionStatus.Analytics>
+                    <ui:SetTransactionStatus.Output>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                    </ui:SetTransactionStatus.Output>
+                    <ui:SetTransactionStatus.TransactionItem>
+                      <InArgument x:TypeArguments="ui:QueueItem">
+                        <CSharpValue x:TypeArguments="ui:QueueItem" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">QueueItem</CSharpValue>
+                      </InArgument>
+                    </ui:SetTransactionStatus.TransactionItem>
+                  </ui:SetTransactionStatus>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Break sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Break_1" />
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ui:InterruptibleWhile.Body>
+        <ui:InterruptibleWhile.Condition>
+          <CSharpValue x:TypeArguments="x:Boolean" DisplayName="C sharp value" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">out_QueueItems != null &amp;&amp; out_QueueItems.Any()</CSharpValue>
+        </ui:InterruptibleWhile.Condition>
+      </ui:InterruptibleWhile>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info">
+        <ui:LogMessage.Message>
+          <InArgument x:TypeArguments="x:Object">
+            <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">"Itens obtidos da fila com sucesso"</CSharpValue>
+          </InArgument>
+        </ui:LogMessage.Message>
+      </ui:LogMessage>
+    </Sequence>
   </Sequence>
 </Activity>
