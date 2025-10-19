@@ -1,5 +1,5 @@
 {
-  "Name": "Extraction.Sales.Opportunities",
+  "Name": "ExtractionSalesOpportunities",
   "ProjectType": "Process",
   "Description": "",
   "MainFile": "Main.xaml"
