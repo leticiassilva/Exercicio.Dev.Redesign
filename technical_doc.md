@@ -1,19 +1,20 @@
 # Documentação Técnica 🔧
 
 ## Sumário 📑
-1. [Estrutura do Projeto](#estrutura-do-projeto-)
-2. [Arquitetura do Sistema](#arquitetura-do-sistema-)
-3. [Fluxo de Dados](#fluxo-de-dados-)
-4. [Componentes do Sistema](#componentes-do-sistema-)
-   - [Extração de Dados](#1-extração-de-dados-)
-   - [Processamento de Formulários](#2-processamento-de-formulários-)
-   - [Integração com Orchestrator](#3-integração-com-orchestrator-)
-   - [Notificações](#4-notificações-)
-5. [Configurações Técnicas](#configurações-técnicas-)
-6. [Tratamento de Erros](#tratamento-de-erros-)
-7. [Performance](#performance-)
-8. [Segurança](#segurança-)
-9. [Manutenção](#manutenção-)
+1. [Estrutura do Projeto](#estrutura-do-projeto)
+2. [Organização do Código](#organização-do-código)
+3. [Arquitetura do Sistema](#arquitetura-do-sistema)
+4. [Fluxo de Dados](#fluxo-de-dados)
+5. [Processo Detalhado](#processo-detalhado)
+6. [Dependências](#dependências)
+7. [Configurações Técnicas](#configurações-técnicas)
+8. [Tratamento de Erros](#tratamento-de-erros)
+9. [Performance](#performance)
+10. [Segurança](#segurança)
+11. [Manutenção](#manutenção)
+12. [Galeria de Imagens do Processo](#galeria-de-imagens-do-processo)
+
+## Estrutura do Projeto
 
 ```
 Exercicio.Dev.Redesign/
@@ -42,7 +43,7 @@ Exercicio.Dev.Redesign/
 └── LICENSE                         # Licença do projeto
 ```
 
-### Organização do Código 🗂️
+### Organização do Código
 
 1. **ExtractionSalesOpportunities**
    - Módulo independente de extração
@@ -63,7 +64,7 @@ Exercicio.Dev.Redesign/
    - README.md: Visão geral e guia rápido
    - technical_doc.md: Detalhes técnicos
 
-## Arquitetura do Sistema 🏗️
+## Arquitetura do Sistema
 
 ### ExtractionSalesOpportunities 📊
 - **Main.xaml**: Orquestrador principal do processo de extração
@@ -76,7 +77,7 @@ Exercicio.Dev.Redesign/
 - **FillForms.xaml**: Automação de preenchimento de formulários
 - **SendEmail.xaml**: Notificação por email do processo
 
-## Fluxo de Dados 🔄
+## Fluxo de Dados
 
 ### Diagrama de Fluxo 📊
 
@@ -92,32 +93,32 @@ graph TD
 
 ### Processo Detalhado
 
-1. **Extração** 📥
+1. **Extração**
    - Acessa website via Edge Browser
    - Extrai dados usando UiPath UI Automation
    - Estrutura dados em DataTable
    - Envia para fila "OpportunitiesData"
    
-2. **Pontos de Integração** 🔌
+2. **Pontos de Integração**
    - Edge Browser para acesso web
    - UiPath Orchestrator para filas
    - Google Forms para formulários
    - Gmail para notificações
 
-3. **Controle de Fluxo** ⚙️
+3. **Controle de Fluxo**
    - Validações em cada etapa
    - Logs de progresso
    - Tratamento de exceções
    - Notificações de status
 
-2. **Processamento** ⚙️
+2. **Processamento**
    - Recupera itens da fila
    - Processa cada item individualmente
    - Preenche formulário Google Forms
    - Atualiza status na fila
    - Envia email de notificação
 
-## Dependências 📦
+## Dependências
 
 ```json
 {
@@ -130,7 +131,7 @@ graph TD
 }
 ```
 
-## Configurações Técnicas ⚙️
+## Configurações Técnicas
 
 ### Orchestrator
 - **Fila**: OpportunitiesData
@@ -142,7 +143,7 @@ graph TD
 - **Template**: HTML com link para repositório
 - **Tratamento de Erros**: Try-Catch com logs
 
-## Tratamento de Erros 🛡️
+## Tratamento de Erros
 
 1. **Níveis de Log**:
    - Info: Progresso normal
@@ -153,19 +154,19 @@ graph TD
    - Logs detalhados de erros
    - Notificação por email em falhas
 
-## Performance 📈
+## Performance
 
 - Processamento item a item
 - Retry automático em falhas de rede
 - Timeout configurado para operações
 
-## Segurança 🔒
+## Segurança
 
 - Credenciais armazenadas no Orchestrator
 - Senhas nunca expostas no código
 - Logs excluem dados sensíveis
 
-## Manutenção 🔧
+## Manutenção
 
 ### Pontos de Atenção
 - Atualizar seletores UI em caso de mudanças no site
@@ -177,7 +178,7 @@ graph TD
 - Adicionar dashboards de monitoramento
 - Expandir validações de dados
 
-## Galeria de Imagens do Processo 📸
+## Galeria de Imagens do Processo
 
 ### 1. Extração de Dados 🌐
 
@@ -253,26 +254,3 @@ graph TD
 - Status de envio
 - Tratamento de erros
 - Confirmações
-
-## Notas sobre as Imagens 📝
-
-### Organização
-- Todas as imagens estão na pasta `Imagens/`
-- Formato padrão: PNG em alta resolução
-- Nomes padronizados e descritivos
-
-### Uso
-- Documentação técnica
-- Materiais de treinamento
-- Apresentações para stakeholders
-- Troubleshooting
-
-### Manutenção
-- Atualizar screenshots quando houver mudanças
-- Manter consistência visual
-- Documentar alterações de interface
-
-### Segurança
-- Dados sensíveis são mascarados
-- Credenciais nunca são exibidas
-- Informações confidenciais protegidas
