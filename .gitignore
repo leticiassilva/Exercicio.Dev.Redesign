@@ -13,6 +13,9 @@
 .objects
 .screenshots
 .storage
+uipath_activities.md
+presentation_script.md
+interview_prep.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

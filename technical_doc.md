@@ -1,5 +1,68 @@
 # Documentação Técnica 🔧
 
+## Sumário 📑
+1. [Estrutura do Projeto](#estrutura-do-projeto-)
+2. [Arquitetura do Sistema](#arquitetura-do-sistema-)
+3. [Fluxo de Dados](#fluxo-de-dados-)
+4. [Componentes do Sistema](#componentes-do-sistema-)
+   - [Extração de Dados](#1-extração-de-dados-)
+   - [Processamento de Formulários](#2-processamento-de-formulários-)
+   - [Integração com Orchestrator](#3-integração-com-orchestrator-)
+   - [Notificações](#4-notificações-)
+5. [Configurações Técnicas](#configurações-técnicas-)
+6. [Tratamento de Erros](#tratamento-de-erros-)
+7. [Performance](#performance-)
+8. [Segurança](#segurança-)
+9. [Manutenção](#manutenção-)
+
+```
+Exercicio.Dev.Redesign/
+├── ExtractionSalesOpportunities/    # Módulo de extração de dados
+│   ├── Main.xaml                    # Orquestrador principal
+│   ├── WebsiteDataExtraction.xaml   # Extração do site
+│   ├── SendToOrchestrator.xaml      # Envio para fila
+│   ├── project.json                 # Configurações do projeto
+│   ├── project.uiproj               # Projeto UiPath
+│   └── entry-points.json            # Pontos de entrada
+│
+├── ProcessFormsData/                # Módulo de processamento
+│   ├── Main.xaml                    # Controlador principal
+│   ├── GetFromOrchestrator.xaml     # Recuperação da fila
+│   ├── FillForms.xaml              # Preenchimento de formulários
+│   ├── SendEmail.xaml              # Notificações por email
+│   ├── project.json                # Configurações do projeto
+│   ├── project.uiproj              # Projeto UiPath
+│   └── entry-points.json           # Pontos de entrada
+│
+├── Imagens/                        # Recursos visuais e capturas
+│   └── [capturas de tela e diagramas]
+│
+├── README.md                       # Documentação principal
+├── technical_doc.md                # Documentação técnica
+└── LICENSE                         # Licença do projeto
+```
+
+### Organização do Código 🗂️
+
+1. **ExtractionSalesOpportunities**
+   - Módulo independente de extração
+   - Foco em UI Automation e coleta de dados
+   - Integração com Edge Browser
+
+2. **ProcessFormsData**
+   - Módulo de processamento e preenchimento
+   - Gerenciamento de filas do Orchestrator
+   - Integração com Google Forms e Gmail
+
+3. **Imagens**
+   - Capturas de tela do processo
+   - Diagramas de fluxo
+   - Recursos visuais para documentação
+
+4. **Documentação**
+   - README.md: Visão geral e guia rápido
+   - technical_doc.md: Detalhes técnicos
+
 ## Arquitetura do Sistema 🏗️
 
 ### ExtractionSalesOpportunities 📊
@@ -15,11 +78,37 @@
 
 ## Fluxo de Dados 🔄
 
+### Diagrama de Fluxo 📊
+
+```mermaid
+graph TD
+    A[Website] -->|Edge Browser| B[WebsiteDataExtraction]
+    B -->|DataTable| C[SendToOrchestrator]
+    C -->|Queue| D[OpportunitiesData Queue]
+    D -->|GetFromOrchestrator| E[ProcessFormsData]
+    E -->|FillForms| F[Google Forms]
+    E -->|SendEmail| G[Gmail Notification]
+```
+
+### Processo Detalhado
+
 1. **Extração** 📥
    - Acessa website via Edge Browser
    - Extrai dados usando UiPath UI Automation
    - Estrutura dados em DataTable
    - Envia para fila "OpportunitiesData"
+   
+2. **Pontos de Integração** 🔌
+   - Edge Browser para acesso web
+   - UiPath Orchestrator para filas
+   - Google Forms para formulários
+   - Gmail para notificações
+
+3. **Controle de Fluxo** ⚙️
+   - Validações em cada etapa
+   - Logs de progresso
+   - Tratamento de exceções
+   - Notificações de status
 
 2. **Processamento** ⚙️
    - Recupera itens da fila
@@ -87,3 +176,103 @@
 - Implementar relatórios detalhados
 - Adicionar dashboards de monitoramento
 - Expandir validações de dados
+
+## Galeria de Imagens do Processo 📸
+
+### 1. Extração de Dados 🌐
+
+#### Website de Oportunidades
+![Processo principal](./Imagens/main_primario.png)
+
+*Fluxo principal*
+- Componente: main.xaml
+
+#### Website de Oportunidades
+![Website Opportunities](./Imagens/website_opportunities.png)
+
+*Página de oportunidades de vendas no navegador Edge*
+- URL: https://www.rpasamples.com/opportunities
+- Componente: WebsiteDataExtraction.xaml
+
+#### Extração da Tabela
+![Extract Table](./Imagens/extract_table.png)
+
+*Processo de extração de dados da tabela*
+- Atividade: Extract Table Data
+- Destino: ExtractTableOpportunities.xlsx
+
+#### Gerenciamento da Fila
+![Queue Management](./Imagens/send_orchestrator.png)
+
+*Enviando para a fila OpportunitiesData*
+- Criando O Arquivo Excel
+- Add Queue Item
+
+### 2. Processamento de Formulários 📝
+
+#### Website de Oportunidades
+![Processo secundário](./Imagens/main_secundario.png)
+
+*Fluxo secundário*
+- Componente: main.xaml
+
+#### Google Forms
+![Google Forms Integration](./Imagens/google_forms.png)
+
+*Interface do formulário de processamento*
+- URL: https://docs.google.com/forms/d/e/1FAfpQLSe8b
+- Componente: FillForms.xaml
+
+#### Preenchimento Automático
+![Form Filling](./Imagens/form_filling.png)
+
+*Automação do preenchimento de campos*
+- Type Into Activities
+- Validações de campos
+- Tratamento de erros
+
+### 3. Integração com Orchestrator 🔄
+
+#### Fila de Processamento
+![Queue Management](./Imagens/get_orchestrator.png)
+
+*Gerenciamento da fila OpportunitiesData*
+- Get Queue Items
+- Get Transaction Item
+- Set Transaction Status
+
+### 4. Notificações por Email 📧
+
+#### Template de Email
+![Email Notification](./Imagens/send_email.png)
+
+*Modelo de email de notificação*
+- Conclusão do Processo
+- Links para resultados
+- Detalhes da execução
+- Status de envio
+- Tratamento de erros
+- Confirmações
+
+## Notas sobre as Imagens 📝
+
+### Organização
+- Todas as imagens estão na pasta `Imagens/`
+- Formato padrão: PNG em alta resolução
+- Nomes padronizados e descritivos
+
+### Uso
+- Documentação técnica
+- Materiais de treinamento
+- Apresentações para stakeholders
+- Troubleshooting
+
+### Manutenção
+- Atualizar screenshots quando houver mudanças
+- Manter consistência visual
+- Documentar alterações de interface
+
+### Segurança
+- Dados sensíveis são mascarados
+- Credenciais nunca são exibidas
+- Informações confidenciais protegidas
